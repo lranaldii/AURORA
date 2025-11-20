@@ -1,0 +1,282 @@
+[
+  {
+    "clause_id": "FCA_COBS_4_FAIR_CLEAR",
+    "regime": "FCA",
+    "short_name": "Fair, clear and not misleading",
+    "obligation_type": "INFO",
+    "summary": "Communications with retail clients must be fair, balanced and not misleading. Firms must avoid exaggerated claims or one-sided presentation of benefits.",
+    "keywords": ["fair", "clear", "not misleading", "promotion", "communication", "advertising"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_COBS_9A_SUITABILITY_ADVICE",
+    "regime": "FCA",
+    "short_name": "Suitability of investment advice",
+    "obligation_type": "SUITABILITY",
+    "summary": "Where a firm provides investment advice or portfolio management, it must ensure the recommendation is suitable given the client’s knowledge, experience, financial situation and risk tolerance.",
+    "keywords": ["suitable", "suitability", "investment advice", "risk tolerance", "portfolio"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_COBS_10_KNOWLEDGE_EXPERIENCE",
+    "regime": "FCA",
+    "short_name": "Assessment of knowledge and experience",
+    "obligation_type": "SUITABILITY",
+    "summary": "Before recommending complex or high-risk products, the firm should assess whether the client has sufficient knowledge and experience to understand the risks.",
+    "keywords": ["knowledge", "experience", "complex product", "high risk"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_CONC_CONSUMER_CREDIT_HCC",
+    "regime": "FCA",
+    "short_name": "High-cost credit and vulnerability",
+    "obligation_type": "VULNERABILITY",
+    "summary": "Firms must exercise particular care when offering high-cost short-term credit, especially where customers show signs of financial or mental vulnerability.",
+    "keywords": ["payday loan", "high-cost credit", "vulnerable", "debt"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_CONSUMER_DUTY_VULNERABLE",
+    "regime": "FCA",
+    "short_name": "Duty towards vulnerable customers",
+    "obligation_type": "VULNERABILITY",
+    "summary": "Firms should identify and respond appropriately to vulnerable customers, taking steps to prevent foreseeable harm and tailoring communications.",
+    "keywords": ["vulnerable", "vulnerability", "foreseeable harm", "support"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_SYSC_FRAUD_PREVENTION",
+    "regime": "FCA",
+    "short_name": "Fraud and scam prevention",
+    "obligation_type": "FRAUD",
+    "summary": "Firms must have controls to detect and prevent fraud and scams, and should not encourage customers to follow instructions that resemble known fraud patterns.",
+    "keywords": ["fraud", "scam", "secure account", "phishing", "transfer funds"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_MCOB_11_AFFORDABILITY",
+    "regime": "FCA",
+    "short_name": "Mortgage affordability assessment",
+    "obligation_type": "AFFORDABILITY",
+    "summary": "Before entering into a regulated mortgage contract, firms must assess whether the customer can afford the repayments on a sustainable basis.",
+    "keywords": ["mortgage", "affordability", "repayment", "income"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_MCOB_EARLY_REDEMPTION",
+    "regime": "FCA",
+    "short_name": "Early repayment information",
+    "obligation_type": "INFO",
+    "summary": "Customers should be informed about possible fees, tax implications and long-term consequences of early redemption or withdrawal from pension-like products.",
+    "keywords": ["early withdrawal", "early redemption", "pension", "fees", "tax"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_PROD_PRODUCT_GOVERNANCE",
+    "regime": "FCA",
+    "short_name": "Product governance and target market",
+    "obligation_type": "SUITABILITY",
+    "summary": "Products should only be recommended within their defined target market; advisers should not promote products to clients outside the intended profile.",
+    "keywords": ["target market", "product governance", "mis-selling"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_DISCLAIMER_NO_ADVICE",
+    "regime": "FCA",
+    "short_name": "Clarifying non-advisory nature",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Where tools provide only generic information, firms must avoid presenting them as providers of personalised or regulated advice.",
+    "keywords": ["not advice", "generic information", "guidance"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "EU_AI_ACT_TRANSPARENCY_AI_IDENTITY",
+    "regime": "EU_AI_ACT",
+    "short_name": "Disclosure of AI identity",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Users should be clearly informed when they are interacting with an AI system rather than a human adviser.",
+    "keywords": ["AI system", "bot", "disclosure", "identity"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "EU_AI_ACT_HIGH_RISK_FINANCIAL",
+    "regime": "EU_AI_ACT",
+    "short_name": "High-risk AI in financial services",
+    "obligation_type": "GOVERNANCE",
+    "summary": "AI systems used to support creditworthiness assessment or financial decision-making may be high-risk and must implement robust risk management and human oversight.",
+    "keywords": ["high-risk", "creditworthiness", "human oversight"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "EU_AI_ACT_RECORD_KEEPING",
+    "regime": "EU_AI_ACT",
+    "short_name": "Record-keeping and logging",
+    "obligation_type": "AUDIT",
+    "summary": "High-risk AI systems must maintain logs sufficient to enable traceability of decisions and post-hoc auditing.",
+    "keywords": ["logging", "traceability", "record keeping", "audit trail"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "EU_AI_ACT_RISK_MANAGEMENT",
+    "regime": "EU_AI_ACT",
+    "short_name": "Risk management system",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Providers of high-risk AI systems must establish a continuous risk management system that monitors and mitigates risks arising from system use.",
+    "keywords": ["risk management", "monitoring", "mitigation"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_ESCALATION_HIGH_RISK",
+    "regime": "Internal_Policy",
+    "short_name": "Escalation of high-risk interactions",
+    "obligation_type": "ESCALATION",
+    "summary": "Interactions classified as high-risk, for example involving vulnerability, fraudulent patterns or significant financial loss, must be escalated to a human compliance officer.",
+    "keywords": ["escalation", "high risk", "human review"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_PROHIBITED_TAX_ADVICE",
+    "regime": "Internal_Policy",
+    "short_name": "Prohibition of tax advice",
+    "obligation_type": "SCOPE",
+    "summary": "The AI system must not provide personalised tax or legal advice and should redirect such queries to qualified professionals.",
+    "keywords": ["tax", "legal", "advice", "scope"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_SCOPE_COMPLEX_DERIVATIVES",
+    "regime": "Internal_Policy",
+    "short_name": "Restrictions on complex derivatives",
+    "obligation_type": "SCOPE",
+    "summary": "The AI assistant must not recommend complex derivatives to retail clients and should instead emphasise risks and refer to human specialists.",
+    "keywords": ["derivatives", "complex product", "retail", "restriction"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_VULNERABILITY_FLAG",
+    "regime": "Internal_Policy",
+    "short_name": "Vulnerability flagging",
+    "obligation_type": "VULNERABILITY",
+    "summary": "Mentions of gambling, severe debt, mental health issues or job loss should trigger a vulnerability flag and a more cautious response.",
+    "keywords": ["gambling", "debt", "job loss", "vulnerable"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_SCAM_PATTERN_RECOGNITION",
+    "regime": "Internal_Policy",
+    "short_name": "Scam pattern recognition",
+    "obligation_type": "FRAUD",
+    "summary": "Patterns such as unsolicited calls demanding urgent transfers to 'secure accounts' should be treated as scam indicators, and customers must be warned.",
+    "keywords": ["secure account", "unsolicited call", "urgent transfer"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_COBS_BALANCED_RISK_REWARD",
+    "regime": "FCA",
+    "short_name": "Balanced presentation of risk and reward",
+    "obligation_type": "INFO",
+    "summary": "When describing products, firms should give a balanced view of potential returns and risks; communications that focus solely on upside are inappropriate.",
+    "keywords": ["risk", "reward", "balanced", "returns"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_CONC_DEBT_ADVICE_CAUTION",
+    "regime": "FCA",
+    "short_name": "Care in debt-related guidance",
+    "obligation_type": "VULNERABILITY",
+    "summary": "Where customers seek help due to problem debt, firms should not promote products that are likely to worsen their situation without signposting support.",
+    "keywords": ["debt", "arrears", "debt advice"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_SYSC_OPERATIONAL_RESILIENCE",
+    "regime": "FCA",
+    "short_name": "Operational resilience and controls",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Systems used in critical business services should be subject to appropriate controls, testing and monitoring to prevent harm.",
+    "keywords": ["operational resilience", "critical services"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "EU_AI_ACT_HUMAN_OVERSIGHT",
+    "regime": "EU_AI_ACT",
+    "short_name": "Human oversight of AI decisions",
+    "obligation_type": "GOVERNANCE",
+    "summary": "High-risk AI systems must allow for effective human oversight, including the ability to override or question outputs.",
+    "keywords": ["human oversight", "override", "monitor"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "INTERNAL_LOGGING_INTERACTION",
+    "regime": "Internal_Policy",
+    "short_name": "Logging of high-stakes interactions",
+    "obligation_type": "AUDIT",
+    "summary": "All high-stakes financial recommendations and escalations should be logged with sufficient context to reconstruct the reasoning.",
+    "keywords": ["logging", "high-stakes", "reasoning"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "INTERNAL_PROHIBIT_GET_RICH_QUICK",
+    "regime": "Internal_Policy",
+    "short_name": "Prohibition of get-rich-quick claims",
+    "obligation_type": "INFO",
+    "summary": "The AI must not encourage 'get-rich-quick' strategies or imply that large returns can be achieved quickly without proportional risk.",
+    "keywords": ["double my money", "fast profit", "get rich quick"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_AFFORDABILITY_FLAG",
+    "regime": "Internal_Policy",
+    "short_name": "Affordability flag trigger",
+    "obligation_type": "AFFORDABILITY",
+    "summary": "Queries suggesting absence of income or heavy existing commitments should trigger an affordability check flag.",
+    "keywords": ["no income", "cannot afford", "repayments"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_COMPLEXITY_WARNING",
+    "regime": "Internal_Policy",
+    "short_name": "Complex product warning",
+    "obligation_type": "INFO",
+    "summary": "Where complex products are mentioned, the AI should emphasise complexity and encourage seeking professional advice.",
+    "keywords": ["structured note", "derivative", "complex"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "INTERNAL_SCOPE_LIMITATION_INVESTMENT",
+    "regime": "Internal_Policy",
+    "short_name": "Scope limitation for investment tools",
+    "obligation_type": "SCOPE",
+    "summary": "The assistant is limited to general information on investments and must not recommend specific securities or strategies as suitable for an individual.",
+    "keywords": ["cannot recommend", "no personalised investment advice"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  }
+]
