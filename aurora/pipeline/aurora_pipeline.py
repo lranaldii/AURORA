@@ -32,7 +32,6 @@ def run_aurora_pipeline(
     kb: List[Clause] = load_kb_from_json(kb_path)
     scenarios: List[Scenario] = load_scenarios_from_jsonl(scenarios_path)
 
-    # 🔥 NEW RETRIEVER: Hybrid RAG + Web search agent
     retriever = HybridRAGClauseRetrievalAgent(
         kb,
         top_k=top_k_clauses,
