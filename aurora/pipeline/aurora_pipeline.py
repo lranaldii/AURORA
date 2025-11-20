@@ -8,7 +8,8 @@ from aurora.utils.data_models import (
     audit_chain_to_dict,
 )
 from aurora.utils.json_tools import save_json
-from aurora.agents.clause_retrieval import ClauseRetrievalAgent
+from aurora.agents.clause_retrieval import HybridRAGClauseRetrievalAgent
+
 from aurora.agents.hard_compliance_critic import HardComplianceCritiqueAgent
 from aurora.agents.soft_risk_critic import SoftRiskCritiqueAgent
 from aurora.agents.escalation_agent import EscalationAgent
@@ -31,7 +32,13 @@ def run_aurora_pipeline(
     kb: List[Clause] = load_kb_from_json(kb_path)
     scenarios: List[Scenario] = load_scenarios_from_jsonl(scenarios_path)
 
-    retriever = ClauseRetrievalAgent(kb, top_k=top_k_clauses)
+    # 🔥 NEW RETRIEVER: Hybrid RAG + Web search agent
+    retriever = HybridRAGClauseRetrievalAgent(
+        kb,
+        top_k=top_k_clauses,
+        threshold=0.35   # adjustable
+    )
+
     hard_critic = HardComplianceCritiqueAgent()
     soft_critic = SoftRiskCritiqueAgent()
     escalator = EscalationAgent(risk_threshold=risk_threshold)
