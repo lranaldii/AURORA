@@ -51,3 +51,29 @@ def escalation_accuracy(
     if total == 0:
         return 0.0
     return correct / total
+
+
+def answer_accuracy(audit_chains: List[Dict[str, Any]], scenarios: List[Scenario]) -> float:
+    scenario_map = {s.scenario_id: s for s in scenarios}
+    correct = 0
+    total = 0
+
+    for chain in audit_chains:
+        sid = chain["scenario_id"]
+        if sid not in scenario_map:
+            continue
+        scenario = scenario_map[sid]
+
+        if scenario.gold_answer is None:
+            continue
+
+        final_answer = chain["final_answer"] if "final_answer" in chain else scenario.assistant_response
+
+        def norm(x):
+            return x.strip().lower()
+
+        total += 1
+        if norm(final_answer) == norm(scenario.gold_answer):
+            correct += 1
+
+    return correct / max(1, total)
