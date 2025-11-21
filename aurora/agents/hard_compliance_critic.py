@@ -14,6 +14,38 @@ class HardComplianceCritiqueAgent:
         pass
 
     def __call__(self, scenario: Scenario, retrieved_clauses: List[Clause]) -> Dict[str, Any]:
+
+        # --------------------------------------------------------
+        # --- canonic answer task ---
+        # --------------------------------------------------------
+        if scenario.task_type in {"definition", "reg_qa", "xbrl", "cdm", "mof"}:
+
+            # Se non c'è una gold answer, fai fallback al comportamento standard
+            if scenario.gold_answer is None:
+                pass
+            else:
+                # normalizzazione
+                def norm(x):
+                    return x.strip().lower()
+
+                is_correct = norm(scenario.assistant_response) == norm(scenario.gold_answer)
+
+                return {
+                    "evaluation_type": "answer_accuracy",
+                    "is_non_compliant": not is_correct,
+                    "coverage": 1.0,  # irrilevante per questi task
+                    "violated_clauses": [],
+                    "explanation": (
+                        "Assistant answer does not match gold answer"
+                        if not is_correct
+                        else "Answer matches gold answer"
+                    ),
+                }
+
+        # --------------------------------------------------------
+        # --- DIALOGUE TASKS ---
+        # --------------------------------------------------------
+
         retrieved_ids = {c.clause_id for c in retrieved_clauses}
         gold_ids = set(scenario.linked_clauses)
         coverage = len(gold_ids & retrieved_ids) / max(1, len(gold_ids))
