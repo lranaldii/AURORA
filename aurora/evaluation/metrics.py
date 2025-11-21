@@ -1,5 +1,86 @@
 from typing import List, Dict, Any
 from aurora.utils.data_models import Scenario
+from aurora.agents.llm_answer_judge import LLMAnswerJudge
+
+
+# task types where exact match is expected
+EXACT_MATCH_TASKS = {"xbrl", "mof"}
+# task types where answers are textual and benefit from semantic evaluation
+SEMANTIC_MATCH_TASKS = {"cdm", "reg_qa", "definition"}
+
+
+def answer_accuracy(audit_chains: List[Dict[str, Any]], 
+                    scenarios: List[Scenario],
+                    use_llm_judge: bool = True,
+                    llm_model: str = "gpt-4o-mini") -> float:
+
+    scenario_map = {s.scenario_id: s for s in scenarios}
+    correct = 0
+    total = 0
+
+    llm_judge = LLMAnswerJudge(model=llm_model) if use_llm_judge else None
+
+    for chain in audit_chains:
+        sid = chain["scenario_id"]
+        if sid not in scenario_map:
+            continue
+        scenario = scenario_map[sid]
+
+        # skip if no gold standard
+        if scenario.gold_answer is None:
+            continue
+
+        final_answer = chain.get("final_answer", scenario.assistant_response)
+
+        def norm(x: str) -> str:
+            return x.strip().lower()
+
+        gold = scenario.gold_answer
+        total += 1
+
+        # -------------------------
+        # Exact match tasks
+        # -------------------------
+        if scenario.task_type in EXACT_MATCH_TASKS:
+            if norm(final_answer) == norm(gold):
+                correct += 1
+            continue  # skip semantic judge
+
+        # ---------------------------------------------------
+        # Semantic tasks (definition, QA, CDM, etc.)
+        # ---------------------------------------------------
+        if scenario.task_type in SEMANTIC_MATCH_TASKS:
+            # Short definitions sometimes should be exact match
+            gold_len = len(gold.split())
+            pred_len = len(final_answer.split())
+
+            # RULE: if gold answer is short → exact match
+            if gold_len <= 10 and pred_len <= 10:
+                if norm(final_answer) == norm(gold):
+                    correct += 1
+                continue
+
+            # Otherwise: use LLM-as-Judge for semantic correctness
+            if use_llm_judge and llm_judge is not None:
+                try:
+                    judgment = llm_judge(
+                        predicted=final_answer,
+                        gold=gold
+                    )
+                    correct += judgment  # 0 or 1
+                except Exception:
+                    pass  # treat as incorrect
+
+            continue
+
+        # ---------------------------------------------------
+        # default fallback (use exact match)
+        # ---------------------------------------------------
+        if norm(final_answer) == norm(gold):
+            correct += 1
+
+    return correct / max(1, total)
+
 
 
 def clause_coverage(
@@ -51,29 +132,3 @@ def escalation_accuracy(
     if total == 0:
         return 0.0
     return correct / total
-
-
-def answer_accuracy(audit_chains: List[Dict[str, Any]], scenarios: List[Scenario]) -> float:
-    scenario_map = {s.scenario_id: s for s in scenarios}
-    correct = 0
-    total = 0
-
-    for chain in audit_chains:
-        sid = chain["scenario_id"]
-        if sid not in scenario_map:
-            continue
-        scenario = scenario_map[sid]
-
-        if scenario.gold_answer is None:
-            continue
-
-        final_answer = chain["final_answer"] if "final_answer" in chain else scenario.assistant_response
-
-        def norm(x):
-            return x.strip().lower()
-
-        total += 1
-        if norm(final_answer) == norm(scenario.gold_answer):
-            correct += 1
-
-    return correct / max(1, total)
