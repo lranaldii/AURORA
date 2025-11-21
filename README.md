@@ -1,4 +1,4 @@
-# AURORA: Auditable Regulatory Oversight Reasoning Agent
+# AURORA: AUditable Regulatory Oversight Reasoning Agent
 
 AURORA is a modular, multi-agent system for real-time regulatory oversight in financial AI applications.
 It generates clause-grounded audit chains, detects non-compliant model behaviour, retrieves regulatory obligations, evaluates risks, and performs transparent multi-agent reasoning.
