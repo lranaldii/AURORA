@@ -12,7 +12,7 @@ from aurora.agents.clause_retrieval import HybridRAGClauseRetrievalAgent
 
 from aurora.agents.hard_compliance_critic import HardComplianceCritiqueAgent
 from aurora.agents.soft_risk_critic import SoftRiskCritiqueAgent
-from aurora.agents.escalation_agent import EscalationAgent
+from aurora.agents.audit_agent import EscalationAgent
 from aurora.agents.audit_chain_builder import AuditChainBuilderAgent
 
 
