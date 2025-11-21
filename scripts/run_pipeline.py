@@ -1,5 +1,7 @@
 import os
 from aurora.pipeline.aurora_pipeline import run_aurora_pipeline
+from aurora.pipeline.iterative_pipeline import IterativeAuroraPipeline
+
 from aurora.config.settings import (
     DEFAULT_KB_PATH,
     DEFAULT_SCENARIOS_PATH,
