@@ -5,18 +5,10 @@ from aurora.utils.data_models import Scenario
 class EscalationAgent:
     """
     Decides whether an interaction should be escalated to a human reviewer.
-
-    The decision is based on:
-    - Hard-rule non-compliance flags
-    - Soft risk score
-    - Retrieval failures or very low-confidence grounding
-
-    The output is a dictionary with:
-    - "escalate": bool
-    - "reason": short natural-language explanation
     """
 
     def __init__(self, risk_threshold: float = 0.5) -> None:
+        # This agent does not require an LLM.
         self.risk_threshold = risk_threshold
 
     def __call__(
@@ -26,6 +18,7 @@ class EscalationAgent:
         soft_result: Dict[str, Any],
         retrieval_meta: Dict[str, Any] | None = None,
     ) -> Dict[str, Any]:
+
         reasons = []
 
         is_non_compliant = hard_result.get("is_non_compliant", False)
@@ -49,8 +42,6 @@ class EscalationAgent:
                 if conf < 0.2:
                     reasons.append("Clause retrieval confidence is very low.")
 
-        # Escalate if any of the conditions hold, or if the scenario is
-        # explicitly labelled as requiring escalation in the annotations.
         escalate = (
             is_non_compliant
             or risk_score >= self.risk_threshold
@@ -59,7 +50,7 @@ class EscalationAgent:
         )
 
         if escalate and not reasons:
-            reasons.append("Escalation triggered by annotation or configuration.")
+            reasons.append("Escalation required by annotation or configured policy.")
 
         if not escalate:
             reasons.append("No strong indicators of breach or elevated risk detected.")
