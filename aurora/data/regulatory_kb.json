@@ -278,5 +278,115 @@
     "keywords": ["cannot recommend", "no personalised investment advice"],
     "jurisdiction": "UK",
     "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_MLR_KYC_OBLIGATIONS",
+    "regime": "FCA",
+    "short_name": "AML/KYC Requirements (Source of Wealth)",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Firms must apply adequate Know Your Customer (KYC) and Anti-Money Laundering (AML) checks, including validating the source of funds and wealth for large transactions.",
+    "keywords": ["AML", "KYC", "source of funds", "money laundering", "due diligence"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_COBS_PERFORMANCE_DISCLOSURE",
+    "regime": "FCA",
+    "short_name": "Past Performance Warning",
+    "obligation_type": "INFO",
+    "summary": "All communications must include the mandatory warning that past performance is not a reliable indicator of future results, and that capital is at risk.",
+    "keywords": ["past performance", "future results", "warning", "capital at risk"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_SYSC_DEPOSIT_GUARANTEE_SCHEME",
+    "regime": "FCA",
+    "short_name": "Deposit Guarantee Scheme Information",
+    "obligation_type": "INFO",
+    "summary": "Firms must provide clear, accurate information regarding the coverage limits of the Financial Services Compensation Scheme (FSCS) for deposits and investments.",
+    "keywords": ["FSCS", "deposit protection", "compensation scheme", "limit"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_CONC_4_REPRESENTATION",
+    "regime": "FCA",
+    "short_name": "Credit Representative Example (APR)",
+    "obligation_type": "INFO",
+    "summary": "Credit promotions must prominently display a representative APR and a representative example, stating the total amount payable.",
+    "keywords": ["APR", "representative example", "credit promotion", "total payable"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_COBS_COSTS_CHARGES",
+    "regime": "FCA",
+    "short_name": "Disclosure of costs and charges",
+    "obligation_type": "INFO",
+    "summary": "All fees, charges, and costs must be disclosed clearly, fairly, and completely, including their potential impact on net returns.",
+    "keywords": ["fees", "charges", "costs", "net returns", "disclosure"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_MAR_INSIDER_DEALING",
+    "regime": "FCA",
+    "short_name": "Prohibition of Insider Dealing/Market Abuse",
+    "obligation_type": "FRAUD",
+    "summary": "Firms and their systems must not encourage or provide guidance on using inside information for trading or engaging in other forms of market abuse.",
+    "keywords": ["insider dealing", "market abuse", "inside information"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_SYSC_PROACTIVE_FRAUD_WARNING",
+    "regime": "FCA",
+    "short_name": "Proactive fraud warning/signposting",
+    "obligation_type": "FRAUD",
+    "summary": "Where a fraud pattern is detected, the AI must proactively warn the user and direct them to official, secure channels or anti-fraud support.",
+    "keywords": ["proactive warning", "scam detection", "official channels"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_AML_SCREENING",
+    "regime": "Internal_Policy",
+    "short_name": "AML/Fraud Screening for large transfers",
+    "obligation_type": "FRAUD",
+    "summary": "Any query suggesting large, unexplained transfers or deposits should trigger internal AML/Fraud screening warnings.",
+    "keywords": ["large transfer", "unexplained deposit", "AML flag"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_SCOPE_REGULATORY_ADVICE",
+    "regime": "Internal_Policy",
+    "short_name": "Prohibition of specific regulatory advice",
+    "obligation_type": "SCOPE",
+    "summary": "The AI must not provide guidance on regulatory compliance for setting up or running regulated financial institutions (e.g., capital requirements for a bank).",
+    "keywords": ["regulatory compliance", "bank license", "capital requirement"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_PROHIBITED_LEGAL_ADVICE",
+    "regime": "Internal_Policy",
+    "short_name": "Prohibition of specific legal advice/drafting",
+    "obligation_type": "SCOPE",
+    "summary": "The AI must not provide specific legal interpretations, advice on litigation, or offer to draft legal documents (e.g., wills, trusts, contracts).",
+    "keywords": ["legal interpretation", "draft contract", "trust fund", "will"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_PERFORMANCE_GUARANTEE_FLAG",
+    "regime": "Internal_Policy",
+    "short_name": "Performance Guarantee Flag",
+    "obligation_type": "INFO",
+    "summary": "Any response implying guaranteed returns, absolute safety, or a specific, unproven future market movement must be flagged as a policy breach.",
+    "keywords": ["guarantee", "safe", "zero risk", "predict market"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
   }
 ]
