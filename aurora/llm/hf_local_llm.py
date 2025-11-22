@@ -1,38 +1,49 @@
-"""
-HuggingFace local backend for AURORA.
+import torch
+from transformers import AutoModelForCausalLM, AutoTokenizer
 
-Supports any local model that works with 'text-generation' pipeline:
- - meta-llama/Llama-3-8B-Instruct
- - mistralai/Mistral-7B-Instruct
- - Qwen2.5 7B
-"""
-
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
-from aurora.llm.base_llm import BaseLLM
+from .base import BaseLLM
 
 
-class HFLocalLLM(BaseLLM):
-    def __init__(self, model_name: str = "meta-llama/Llama-3-8B-Instruct",
-                 device: str = "cpu"):
-        self.model_name = model_name
-        self.device = device
+class HuggingFaceLLM(BaseLLM):
+    """
+    Local HuggingFace LLM backend.
+    Handles GPU placement and chat template rendering.
+    """
 
-        # Load model
-        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+    def __init__(self,
+                 name="HuggingFaceLLM",
+                 model_id="meta-llama/Meta-Llama-3-8B-Instruct",
+                 max_new_tokens=800,
+                 do_sample=False):
+
+        super().__init__(name, model_id=model_id)
+        self.max_new_tokens = max_new_tokens
+        self.do_sample = do_sample
+
+    def _instantiate(self, model_id):
+        self.model_id = model_id
+        self.tokenizer = AutoTokenizer.from_pretrained(model_id)
         self.model = AutoModelForCausalLM.from_pretrained(
-            model_name,
-            torch_dtype="auto",
-            device_map=device,
+            model_id,
+            torch_dtype=torch.float16,
+            device_map="auto"
         )
 
-        self.pipe = pipeline(
-            "text-generation",
-            model=self.model,
-            tokenizer=self.tokenizer,
-            device_map=device,
-            max_new_tokens=512,
+    def generate(self, messages):
+        enc = self.tokenizer.apply_chat_template(
+            messages,
+            add_generation_prompt=True,
+            return_tensors="pt"
+        ).to(self.model.device)
+
+        output = self.model.generate(
+            enc,
+            max_new_tokens=self.max_new_tokens,
+            do_sample=self.do_sample,
+            pad_token_id=self.tokenizer.eos_token_id
         )
 
-    def generate(self, prompt: str, max_tokens: int = 512) -> str:
-        out = self.pipe(prompt, max_new_tokens=max_tokens)
-        return out[0]["generated_text"]
+        full = self.tokenizer.decode(output[0])
+        prompt = self.tokenizer.decode(enc[0])
+
+        return full[len(prompt):].strip()
