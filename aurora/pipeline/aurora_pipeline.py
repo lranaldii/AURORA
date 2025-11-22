@@ -9,7 +9,6 @@ from aurora.utils.data_models import (
 )
 from aurora.utils.json_tools import save_json
 from aurora.agents.clause_retrieval import HybridRAGClauseRetrievalAgent
-
 from aurora.agents.hard_compliance_critic import HardComplianceCritiqueAgent
 from aurora.agents.soft_risk_critic import SoftRiskCritiqueAgent
 from aurora.agents.audit_agent import EscalationAgent
@@ -21,13 +20,35 @@ def run_aurora_pipeline(
     scenarios_path: str,
     output_path: str,
     top_k_clauses: int = 5,
+    retrieval_threshold: float = 0.35,
     risk_threshold: float = 0.5,
 ) -> None:
     """
     Runs the full AURORA pipeline on all scenarios.
-    1. loads the regulatory KB and scenarios
-    2. runs all agents
-    3. saves audit chains to JSON
+
+    Steps:
+    1. Load the regulatory KB and scenarios.
+    2. For each (user, assistant) interaction:
+       a. Retrieve relevant clauses via hybrid RAG.
+       b. Run hard and soft critics.
+       c. Decide whether to escalate to a human reviewer.
+       d. Build a structured audit chain.
+    3. Save all audit chains as JSON.
+
+    Parameters
+    ----------
+    kb_path:
+        Path to the regulatory knowledge base JSON file.
+    scenarios_path:
+        Path to the scenarios JSONL file.
+    output_path:
+        Path where the resulting audit chains JSON will be written.
+    top_k_clauses:
+        Maximum number of clauses to retrieve per scenario.
+    retrieval_threshold:
+        Confidence threshold in [0, 1] below which web fallback is triggered.
+    risk_threshold:
+        Risk score threshold in [0, 1] above which interactions are escalated.
     """
     kb: List[Clause] = load_kb_from_json(kb_path)
     scenarios: List[Scenario] = load_scenarios_from_jsonl(scenarios_path)
@@ -35,9 +56,8 @@ def run_aurora_pipeline(
     retriever = HybridRAGClauseRetrievalAgent(
         kb,
         top_k=top_k_clauses,
-        threshold=0.35   # adjustable
+        threshold=retrieval_threshold,
     )
-
     hard_critic = HardComplianceCritiqueAgent()
     soft_critic = SoftRiskCritiqueAgent()
     escalator = EscalationAgent(risk_threshold=risk_threshold)
@@ -46,17 +66,32 @@ def run_aurora_pipeline(
     audit_chains: List[Dict[str, Any]] = []
 
     for scenario in scenarios:
-        combined_text = scenario.user_message + " " + scenario.assistant_response
-        retrieved_clauses = retriever(combined_text)
-        hard_result = hard_critic(scenario, retrieved_clauses)
-        soft_result = soft_critic(scenario)
-        escalation_result = escalator(scenario, hard_result, soft_result)
+        combined_text = f"{scenario.user_message} {scenario.assistant_response}"
+
+        retrieval_output = retriever(combined_text)
+        retrieved_clauses: List[Clause] = retrieval_output["clauses"]
+        retrieval_meta: Dict[str, Any] = {
+            "retrieval_confidence": retrieval_output.get("retrieval_confidence"),
+            "used_web_fallback": retrieval_output.get("used_web_fallback", False),
+            "retrieval_failed": retrieval_output.get("retrieval_failed", False),
+        }
+
+        hard_result = hard_critic(scenario, retrieved_clauses, retrieval_meta)
+        soft_result = soft_critic(scenario, retrieval_meta, hard_result)
+        escalation_result = escalator(
+            scenario,
+            hard_result,
+            soft_result,
+            retrieval_meta,
+        )
+
         audit_chain: AuditChain = audit_builder(
             scenario,
             retrieved_clauses,
             hard_result,
             soft_result,
             escalation_result,
+            retrieval_meta,
         )
         audit_chains.append(audit_chain_to_dict(audit_chain))
 
