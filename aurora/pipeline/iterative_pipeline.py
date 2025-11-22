@@ -2,55 +2,56 @@ from typing import List, Dict, Any
 from dataclasses import replace
 
 from aurora.utils.data_models import Scenario, AuditChain
+
 from aurora.agents.clause_retrieval import HybridRAGClauseRetrievalAgent
 from aurora.agents.hard_compliance_critic import HardComplianceCritiqueAgent
 from aurora.agents.soft_risk_critic import SoftRiskCritiqueAgent
 from aurora.agents.audit_agent import EscalationAgent
 from aurora.agents.audit_chain_builder import AuditChainBuilderAgent
 
+from aurora.llm.base import BaseLLM
+
 
 class IterativeAuroraPipeline:
     """
-    Iterative self-refinement pipeline for AURORA
-
-    Given an initial scenario (user message + assistant response), the pipeline can:
-    1. Run the full retrieval–critique–escalation–audit chain.
-    2. Use the audit chain's improvement suggestion to rewrite the assistant response.
-    3. Re-run the pipeline on the refined response for a small number of iterations.
-
-    This allows us to study whether multi-agent oversight can systematically improve model behaviour across iterations.
+    Iterative self-refinement pipeline for AURORA.
     """
 
     def __init__(
         self,
-        retriever: HybridRAGClauseRetrievalAgent,
-        hard_critic: HardComplianceCritiqueAgent,
-        soft_critic: SoftRiskCritiqueAgent,
-        escalator: EscalationAgent,
-        audit_builder: AuditChainBuilderAgent,
+        kb,
+        llm: BaseLLM,
+        top_k_clauses: int = 5,
+        retrieval_threshold: float = 0.35,
+        risk_threshold: float = 0.5,
         max_iterations: int = 2,
     ) -> None:
-        self.retriever = retriever
-        self.hard_critic = hard_critic
-        self.soft_critic = soft_critic
-        self.escalator = escalator
-        self.audit_builder = audit_builder
+
+        # Shared LLM
+        self.llm = llm
+
+        # Agents
+        self.retriever = HybridRAGClauseRetrievalAgent(
+            kb, top_k=top_k_clauses, threshold=retrieval_threshold
+        )
+        self.hard_critic = HardComplianceCritiqueAgent()
+        self.soft_critic = SoftRiskCritiqueAgent(llm=self.llm)
+        self.escalator = EscalationAgent(risk_threshold=risk_threshold)
+        self.audit_builder = AuditChainBuilderAgent(llm=self.llm)
+
         self.max_iterations = max_iterations
 
-    def run(self, scenario: Scenario) -> List[AuditChain]:
-        """
-        Run iterative refinement on a single scenario.
+    # ---------------------------------------------------------------------
 
-        Returns the list of AuditChain objects, one per iteration.
-        The first element corresponds to the original assistant response; subsequent elements correspond to refined responses.
-        """
+    def run(self, scenario: Scenario) -> List[AuditChain]:
+
         audit_trail: List[AuditChain] = []
 
-        # Keep the original scenario intact by working on copies.
         current_scenario = replace(scenario)
         current_response = current_scenario.assistant_response
 
         for step in range(self.max_iterations):
+
             current_scenario.assistant_response = current_response
             combined_text = f"{current_scenario.user_message} {current_scenario.assistant_response}"
 
@@ -63,20 +64,13 @@ class IterativeAuroraPipeline:
             }
 
             hard_result = self.hard_critic(
-                current_scenario,
-                retrieved_clauses,
-                retrieval_meta,
+                current_scenario, retrieved_clauses, retrieval_meta
             )
             soft_result = self.soft_critic(
-                current_scenario,
-                retrieval_meta,
-                hard_result,
+                current_scenario, retrieval_meta, hard_result
             )
             escalation_result = self.escalator(
-                current_scenario,
-                hard_result,
-                soft_result,
-                retrieval_meta,
+                current_scenario, hard_result, soft_result, retrieval_meta
             )
 
             audit_chain = self.audit_builder(
@@ -89,9 +83,7 @@ class IterativeAuroraPipeline:
             )
             audit_trail.append(audit_chain)
 
-            # Stopping criteria:
-            # - If there is no improvement suggestion, stop.
-            # - If the first iteration is already compliant and low risk, stop.
+            # ---------------- STOPPING CONDITIONS ----------------
             improvement = audit_chain.improvement_suggestion or {}
             new_response = improvement.get("replacement_guidance", "").strip()
 
@@ -104,7 +96,7 @@ class IterativeAuroraPipeline:
             if not new_response:
                 break
 
-            # Prepare for the next iteration with the refined answer.
+            # New iteration starts with refined answer
             current_response = new_response
 
         return audit_trail
