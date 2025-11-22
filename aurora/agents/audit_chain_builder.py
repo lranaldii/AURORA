@@ -2,7 +2,7 @@ from typing import List, Dict, Any
 import json
 
 from aurora.utils.data_models import Scenario, Clause, AuditChain
-from aurora.models.openai_client import ask_gpt
+from aurora.llm.base import BaseLLM
 
 
 AUDIT_PROMPT = """
@@ -60,19 +60,11 @@ Retrieval meta-data (JSON):
 
 class AuditChainBuilderAgent:
     """
-    Builds an AuditChain object from scenario and agent outputs.
-
-    This agent aggregates:
-    - scenario content,
-    - retrieved clauses,
-    - hard and soft critic outputs, and
-    - escalation decisions,
-
-    and queries an LLM to generate a structured audit chain including extracted facts, detected risks, and suggested replacement guidance.
+    Uses an LLM to construct an AuditChain object from scenario + agent outputs.
     """
 
-    def __init__(self, model: str = "gpt-4.1-mini") -> None:
-        self.model = model
+    def __init__(self, llm: BaseLLM) -> None:
+        self.llm = llm
 
     def __call__(
         self,
@@ -83,8 +75,8 @@ class AuditChainBuilderAgent:
         escalation_result: Dict[str, Any],
         retrieval_meta: Dict[str, Any] | None = None,
     ) -> AuditChain:
-        # Prepare serialisable versions of clauses and critic outputs.
-        clauses_payload: List[Dict[str, Any]] = [
+
+        clauses_payload = [
             {
                 "clause_id": c.clause_id,
                 "short_name": c.short_name,
@@ -108,39 +100,42 @@ class AuditChainBuilderAgent:
             retrieval_json=retrieval_json,
         )
 
-        # Default skeleton in case the LLM call fails or returns invalid JSON.
+        # Default fallback values
         default_label = scenario.compliance_label or "COMPLIANT"
         default_assessment = {
             "label": default_label,
             "rationale": scenario.notes
-            or "Assessment derived from annotation and heuristic critics.",
+            or "Assessment derived from annotation and heuristics.",
         }
         default_actions = []
+
         if escalation_result.get("escalate", False):
             default_actions.append("Escalate this interaction to a human reviewer.")
+
         if hard_result.get("is_non_compliant", False):
             default_actions.append(
-                "Review assistant prompts and safety policies for this type of scenario."
+                "Review prompt templates and safety settings for this type of scenario."
             )
 
         default_improvement = {
             "replacement_guidance": (
-                "To provide balanced and compliant guidance, avoid making guarantees, "
-                "highlight key risks, and encourage the user to seek regulated advice "
-                "where appropriate."
+                "Provide balanced, compliant guidance; avoid guarantees; "
+                "highlight key risks; encourage regulated advice when appropriate."
             ),
-            "style_notes": "Use clear, non-technical language and explicitly mention uncertainty.",
+            "style_notes": "Use clear, non-technical language; explicitly mention uncertainty.",
         }
 
-        extracted_facts: List[str] = [
+        extracted_facts = [
             scenario.user_message.strip(),
             scenario.assistant_response.strip(),
         ]
-        detected_risks: List[str] = []
+        detected_risks = []
 
-        # Call the LLM to obtain a richer, structured audit chain.
+        # ------------------------ CALL LLM ------------------------
         try:
-            raw = ask_gpt(prompt, model=self.model, max_tokens=600)
+            raw = self.llm.generate([
+                {"role": "user", "content": prompt}
+            ])
             llm_out = json.loads(raw)
         except Exception:
             llm_out = {}
@@ -153,7 +148,6 @@ class AuditChainBuilderAgent:
             "improvement_suggestion", default_improvement
         )
 
-        # Final AuditChain object.
         return AuditChain(
             scenario_id=scenario.scenario_id,
             extracted_facts=extracted_facts,
