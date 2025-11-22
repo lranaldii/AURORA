@@ -48,7 +48,7 @@ aurora/
 │
 ├── data/             # Regulatory KB + annotated scenarios
 │── agents/           # Multi-agent system modules
-│── models/           # GPT API wrapper
+│── models/           # LLM API/HF wrapper
 │── pipeline/         # Full AURORA pipeline
 │── evaluation/       # Metrics
 │── utils/            # Helpers
