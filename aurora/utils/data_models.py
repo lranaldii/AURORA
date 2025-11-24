@@ -26,7 +26,8 @@ class Scenario:
     linked_clauses: List[str] = None
     task_type: str = "dialogue"  # "definition", "reg_qa", "xbrl", "cdm", "mof"
     gold_answer: str | None = None  # canonic answer
-    metadata: Dict[str, Any] = None  # es. tag XBRL, id CDM, MOF
+    metadata: Dict[str, Any] = None  # tag XBRL, id CDM, MOF
+
 
 
 @dataclass
