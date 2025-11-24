@@ -6,7 +6,7 @@ from aurora.agents.llm_answer_judge import LLMAnswerJudge
 # task types where exact match is expected
 EXACT_MATCH_TASKS = {"xbrl", "mof"}
 # task types where answers are textual and benefit from semantic evaluation
-SEMANTIC_MATCH_TASKS = {"cdm", "reg_qa", "definition"}
+SEMANTIC_MATCH_TASKS = {"cdm", "reg_qa", "definition", "dialogue_safety"}
 
 
 def answer_accuracy(audit_chains: List[Dict[str, Any]], 
