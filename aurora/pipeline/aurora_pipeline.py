@@ -9,14 +9,11 @@ from aurora.utils.data_models import (
 )
 from aurora.utils.json_tools import save_json
 
-# AGENTI
 from aurora.agents.clause_retrieval import HybridRAGClauseRetrievalAgent
 from aurora.agents.hard_compliance_critic import HardComplianceCritiqueAgent
 from aurora.agents.soft_risk_critic import SoftRiskCritiqueAgent
 from aurora.agents.escalation_agent import EscalationAgent
 from aurora.agents.audit_chain_builder import AuditChainBuilderAgent
-
-# LLM
 from aurora.llm.openai_llm import OpenAILLM
 
 
