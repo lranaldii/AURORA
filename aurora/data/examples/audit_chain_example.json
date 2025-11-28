@@ -25,13 +25,11 @@
   ],
   "compliance_assessment": {
     "label": "BREACH",
-    "rationale": "The assistant implicitly endorses further borrowing without acknowledging risks or signposting independent debt advice, contrary to expectations for treatment of customers in financial difficulty."
-    ],
+    "rationale": "The assistant implicitly endorses further borrowing without acknowledging risks or signposting independent debt advice, contrary to expectations for treatment of customers in financial difficulty." ],
   "required_actions": [
     "Flag the interaction as high-risk.",
     "Escalate to a human debt-support specialist.",
-    "Log the interaction with full transcript for review."
-  ],
+    "Log the interaction with full transcript for review."],
   "escalation_decision": {
     "escalate": true,
     "priority": "HIGH",
