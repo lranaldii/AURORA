@@ -1,10 +1,9 @@
 """
-Clause Retrieval Agents for AURORA.
-
+Clause Retrieval Agents
 This module implements a hybrid RAG mechanism:
 - Embedding-based retrieval over the internal regulatory KB.
-- Optional web-search fallback using DuckDuckGo.
-- Query expansion with web snippets and re-ranking.
+- *Optional web-search fallback.
+- *Query expansion with web snippets and re-ranking.
 - A retrieval meta-signal capturing confidence and fallback status.
 
 The HybridRAGClauseRetrievalAgent returns a dictionary with:
@@ -14,19 +13,18 @@ The HybridRAGClauseRetrievalAgent returns a dictionary with:
 - "retrieval_failed": bool
 """
 
-from typing import List, Dict, Any
+from typing import List, Dict, Any, Union
 import re
 import requests
 import numpy as np
 from sentence_transformers import SentenceTransformer, util
 
-from aurora.utils.data_models import Clause
+from aurora.utils.data_models import Clause, Scenario
 
 
 class HybridRAGClauseRetrievalAgent:
     """
-    Hybrid RAG system for clause retrieval.
-
+    Hybrid RAG system for clause retrieval
     Step 1: Compute similarity between query and internal KB using embeddings.
     Step 2: If the best score < threshold and web fallback is enabled, issue a web search and extract a short snippet.
     Step 3: Expand the query with the snippet and recompute similarities.
@@ -64,7 +62,7 @@ class HybridRAGClauseRetrievalAgent:
 
     def _strip_html(self, html: str) -> str:
         """
-        Very lightweight HTML stripper to avoid an additional dependency.
+        Lightweight HTML stripper to avoid an additional dependency.
         It removes tags and collapses whitespace.
         """
         text = re.sub(r"<[^>]+>", " ", html)
@@ -86,16 +84,19 @@ class HybridRAGClauseRetrievalAgent:
                 clean = clean[:max_chars]
             return clean
         except Exception:
-            # In production we would log the error; here we fail silently.
+            # In production we would log the error here we fail silently.
             return ""
 
     # ------------------------------------------------------------------
     # API
     # ------------------------------------------------------------------
 
-    def __call__(self, text: str) -> Dict[str, Any]:
+    def __call__(self, query: Union[str, Scenario]) -> Dict[str, Any]:
         """
-        Run hybrid retrieval for the given free-text query.
+        Run hybrid retrieval for the given query.
+
+        The query can be either:
+        - a free-text string or a Scenario object in which case scenario.user_message is used.
 
         Returns a dictionary with:
         - "clauses": List[Clause]
@@ -103,6 +104,12 @@ class HybridRAGClauseRetrievalAgent:
         - "used_web_fallback": bool
         - "retrieval_failed": bool
         """
+        # Normalise input accept either Scenario or raw text.
+        if isinstance(query, Scenario):
+            text = query.user_message
+        else:
+            text = query
+
         if not self.kb or self._kb_embeddings is None:
             return {
                 "clauses": [],
@@ -111,7 +118,7 @@ class HybridRAGClauseRetrievalAgent:
                 "retrieval_failed": True,
             }
 
-        # Embed query and compute cosine similarity with KB.
+        # Embed query and compute cosine similarity with KB
         query_emb = self.model.encode(text, convert_to_tensor=True)
         kb_scores = util.cos_sim(query_emb, self._kb_embeddings)[0].cpu().numpy()
 
@@ -146,8 +153,7 @@ class HybridRAGClauseRetrievalAgent:
         )
 
         if not snippet:
-            # Web fallback failed; we still return KB candidates but flag
-            # the retrieval as potentially unreliable.
+            # Web fallback failed we still return KB candidates but flag the retrieval as potentially unreliable.
             return {
                 "clauses": top_k_clauses,
                 "retrieval_confidence": best_score,
@@ -174,7 +180,7 @@ class HybridRAGClauseRetrievalAgent:
         final_indices = final_rank[: self.top_k]
         final_clauses = [self.kb[i] for i in final_indices]
 
-        # Retrieval is considered failed if, even after expansion, all scores remain low. The threshold here is conservative.
+        # Retrieval is considered failed if even after expansion all scores remain low. The threshold here is conservative.
         retrieval_failed = best_score2 < 0.10
 
         return {
