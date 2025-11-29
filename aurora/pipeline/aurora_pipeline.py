@@ -30,10 +30,10 @@ def run_aurora_pipeline(
     kb: List[Clause] = load_kb_from_json(kb_path)
     scenarios: List[Scenario] = load_scenarios_from_jsonl(scenarios_path)
 
-    # --------------------- LLM shared across all agents ---------------------
+    # --------------------- Shared LLM ---------------------
     llm = OpenAILLM(model=model_name)
 
-    # ----------------------- Initialize agents ------------------------------
+    # --------------------- Initialise Agents ---------------------
     retriever = HybridRAGClauseRetrievalAgent(
         kb,
         top_k=top_k_clauses,
@@ -46,19 +46,25 @@ def run_aurora_pipeline(
 
     audit_chains: List[Dict[str, Any]] = []
 
+    # ------------------------ main-loop -------------------------
     for scenario in scenarios:
-        combined_text = f"{scenario.user_message} {scenario.assistant_response}"
 
-        retrieval_output = retriever(combined_text)
+        # 1. RETRIEVER 
+        retrieval_output = retriever(scenario)
         retrieved_clauses: List[Clause] = retrieval_output["clauses"]
-        retrieval_meta: Dict[str, Any] = {
-            "retrieval_confidence": retrieval_output.get("retrieval_confidence"),
-            "used_web_fallback": retrieval_output.get("used_web_fallback", False),
-            "retrieval_failed": retrieval_output.get("retrieval_failed", False),
-        }
+        retrieval_meta: Dict[str, Any] = retrieval_output  # already a dict with needed keys
 
-        hard_result = hard_critic(scenario, retrieved_clauses, retrieval_meta)
-        soft_result = soft_critic(scenario, retrieval_meta, hard_result)
+        # 2. HARD COMPLIANCE 
+        hard_result = hard_critic(scenario, retrieved_clauses)
+
+        # 3. SOFT RISK ANALYSIS  
+        soft_result = soft_critic(
+            scenario,
+            retrieval_meta=retrieval_meta,
+            hard_result=hard_result,
+        )
+
+        # 4. ESCALATION DECISION
         escalation_result = escalator(
             scenario,
             hard_result,
@@ -66,6 +72,7 @@ def run_aurora_pipeline(
             retrieval_meta,
         )
 
+        # 5. BUILD AUDIT CHAIN
         audit_chain: AuditChain = audit_builder(
             scenario,
             retrieved_clauses,
@@ -77,4 +84,5 @@ def run_aurora_pipeline(
 
         audit_chains.append(audit_chain_to_dict(audit_chain))
 
+    # 6. SAVE OUTPUT
     save_json(audit_chains, output_path)
