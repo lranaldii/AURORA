@@ -71,12 +71,30 @@ class SoftRiskCritiqueAgent:
         text_assistant = scenario.assistant_response
         combined_text = f"{text_user} {text_assistant}"
 
-        # ----------------- LLM AS JUDGE — PASS 1 -----------------
-        prompt = LLM_RISK_PROMPT.format(
-            user=text_user,
-            assistant=text_assistant
+        # ------------- OPTIONAL HARD-RISK PROMPT INJECTION -------------
+        hard_block = ""
+        if hard_result is not None:
+            is_breach = hard_result.get("is_non_compliant", False)
+            violated = hard_result.get("violated_clauses", [])
+            clause_str = ", ".join(violated) if violated else "None detected"
+
+            hard_block = (
+                f"\n\nHard-Compliance Analysis:\n"
+                f" - Non-compliance detected: {is_breach}\n"
+                f" - Violated clauses: {clause_str}\n"
+                f"Consider this information when estimating the final risk score."
+            )
+
+        # ------------- PROMPT CONSTRUCTION -------------
+        prompt = (
+            LLM_RISK_PROMPT.format(
+                user=text_user,
+                assistant=text_assistant
+            )
+            + hard_block
         )
 
+        # ----------------- LLM AS JUDGE -----------------
         try:
             raw = self.llm.generate([
                 {"role": "user", "content": prompt}
@@ -101,7 +119,6 @@ class SoftRiskCritiqueAgent:
 
         # ---------------- RETRIEVAL META-DATA -----------------
         if retrieval_meta is not None:
-
             if retrieval_meta.get("retrieval_failed", False):
                 if risk_score < 0.6:
                     risk_score = 0.6
@@ -113,14 +130,15 @@ class SoftRiskCritiqueAgent:
                 if conf > 0.9 and risk_score < 0.4:
                     risk_score = max(0.0, risk_score - 0.05)
 
-        # ---------------- HARD CRITIC RESULT -----------------
+        # ---------------- HARD CRITIC -----------------
         if hard_result is not None and hard_result.get("is_non_compliant", False):
+            # Never let breach go below HIGH
             if risk_score < 0.7:
                 risk_score = 0.75
-                extra = "Hard-rule analysis indicates a likely breach."
-                rationale = (rationale + " " + extra).strip()
+            extra = "Hard-rule analysis indicates a likely breach."
+            rationale = (rationale + " " + extra).strip()
 
-        # ---------------- AMBIGUOUS BAND — PASS 2 -----------------
+        # ---------------- AMBIGUOUS BAND -----------------
         if 0.35 <= risk_score <= 0.65:
             conservative_prompt = (
                 LLM_RISK_PROMPT
@@ -138,7 +156,7 @@ class SoftRiskCritiqueAgent:
             except Exception:
                 pass
 
-        # ---------------- FINALISE -----------------
+        # ---------------- FINALIZE -----------------
         risk_score = max(0.0, min(1.0, risk_score))
         risk_level = self._level_from_score(risk_score)
 
