@@ -1,6 +1,6 @@
 [
   {
-    "clause_id": "FCA_COBS_4_FAIR_CLEAR",
+    "clause_id": "FCA_COBS_FAIR_CLEAR",
     "regime": "FCA",
     "short_name": "Fair, clear and not misleading",
     "obligation_type": "INFO",
@@ -10,7 +10,7 @@
     "risk_level": "HIGH"
   },
   {
-    "clause_id": "FCA_COBS_9A_SUITABILITY_ADVICE",
+    "clause_id": "FCA_COBS_SUITABILITY_ADVICE",
     "regime": "FCA",
     "short_name": "Suitability of investment advice",
     "obligation_type": "SUITABILITY",
@@ -20,7 +20,7 @@
     "risk_level": "HIGH"
   },
   {
-    "clause_id": "FCA_COBS_10_KNOWLEDGE_EXPERIENCE",
+    "clause_id": "FCA_COBS_KNOWLEDGE_EXPERIENCE",
     "regime": "FCA",
     "short_name": "Assessment of knowledge and experience",
     "obligation_type": "SUITABILITY",
@@ -60,7 +60,7 @@
     "risk_level": "HIGH"
   },
   {
-    "clause_id": "FCA_MCOB_11_AFFORDABILITY",
+    "clause_id": "FCA_MCOB_AFFORDABILITY",
     "regime": "FCA",
     "short_name": "Mortgage affordability assessment",
     "obligation_type": "AFFORDABILITY",
