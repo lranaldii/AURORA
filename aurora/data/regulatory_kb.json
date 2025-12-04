@@ -388,5 +388,206 @@
     "keywords": ["guarantee", "safe", "zero risk", "predict market"],
     "jurisdiction": "UK",
     "risk_level": "HIGH"
+  },
+  [
+  {
+    "clause_id": "FCA_COBS_CONFLICTS_OF_INTEREST",
+    "regime": "FCA",
+    "short_name": "Conflicts of interest disclosure",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Firms must identify, manage, and clearly disclose conflicts of interest that may influence recommendations or product promotion.",
+    "keywords": ["conflict of interest", "disclosure", "bias", "recommendation"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_CONC_ARREARS_TREATMENT",
+    "regime": "FCA",
+    "short_name": "Fair treatment of customers in arrears",
+    "obligation_type": "VULNERABILITY",
+    "summary": "Customers in arrears must be treated with forbearance and due consideration, avoiding disproportionate charges or pressure.",
+    "keywords": ["arrears", "late payment", "forbearance", "debt"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_MCOB_REVERSION_RATES",
+    "regime": "FCA",
+    "short_name": "Disclosure of reversion rates",
+    "obligation_type": "INFO",
+    "summary": "Mortgage firms must explain reversion rates and potential increases after introductory periods, ensuring customers understand long-term costs.",
+    "keywords": ["reversion rate", "variable rate", "mortgage", "APR"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_COBS_COMPLEX_RISK_WARNING",
+    "regime": "FCA",
+    "short_name": "Warnings for complex investment risks",
+    "obligation_type": "INFO",
+    "summary": "When discussing complex investment products, firms must provide clear risk warnings and avoid minimising downside scenarios.",
+    "keywords": ["complex investment", "risk warning", "downside"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "FCA_COBS_SUSTAINABILITY_DISCLOSURE",
+    "regime": "FCA",
+    "short_name": "Sustainability claims and greenwashing",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Environmental or sustainability-related claims must be substantiated and not mislead customers about actual ESG characteristics.",
+    "keywords": ["ESG", "greenwashing", "sustainability", "environmental claims"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_SYSC_OUTSOURCING_CONTROLS",
+    "regime": "FCA",
+    "short_name": "Controls for outsourced functions",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Firms must maintain oversight of outsourced functions and ensure they meet regulatory requirements, especially for critical processes.",
+    "keywords": ["outsourcing", "third party", "controls"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_COBS_PROMOTION_FCA_RULES",
+    "regime": "FCA",
+    "short_name": "Financial promotion rules",
+    "obligation_type": "INFO",
+    "summary": "Financial promotions must be fair, clear and compliant, avoiding exaggerated claims or unverified testimonials.",
+    "keywords": ["financial promotion", "advertising", "testimonials"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "EU_AI_ACT_DATA_QUALITY",
+    "regime": "EU_AI_ACT",
+    "short_name": "Training data quality",
+    "obligation_type": "GOVERNANCE",
+    "summary": "High-risk AI systems must be trained on high-quality datasets free from errors, biases, or gaps that may impact safety.",
+    "keywords": ["training data", "data quality", "bias mitigation"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "EU_AI_ACT_USER_FEEDBACK_LOOP",
+    "regime": "EU_AI_ACT",
+    "short_name": "Feedback and anomaly reporting",
+    "obligation_type": "AUDIT",
+    "summary": "Users of high-risk AI systems must be able to report anomalies or harmful outputs, enabling continuous monitoring.",
+    "keywords": ["feedback", "anomaly", "reporting", "monitoring"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "EU_AI_ACT_EXPLAINABILITY_REQUIREMENT",
+    "regime": "EU_AI_ACT",
+    "short_name": "Explainability for high-risk outputs",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "High-risk AI outputs must be explainable to the extent necessary for users to interpret and contest decisions.",
+    "keywords": ["explainability", "interpretability", "contestability"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "EU_AI_ACT_HUMAN_IN_THE_LOOP",
+    "regime": "EU_AI_ACT",
+    "short_name": "Human-in-the-loop requirements",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Operators must ensure appropriate human involvement before consequential decisions are acted upon.",
+    "keywords": ["human-in-the-loop", "intervention", "oversight"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "INTERNAL_VIABILITY_WARNING",
+    "regime": "Internal_Policy",
+    "short_name": "Financial viability warning",
+    "obligation_type": "INFO",
+    "summary": "The AI must warn users when business or investment ideas appear unrealistic or unsupported by financial fundamentals.",
+    "keywords": ["viability", "unrealistic", "business idea"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "INTERNAL_TRADING_PATTERN_FLAG",
+    "regime": "Internal_Policy",
+    "short_name": "Suspicious trading pattern flag",
+    "obligation_type": "FRAUD",
+    "summary": "Queries implying coordinated trading, pump-and-dump behaviours, or manipulation triggers fraud-based restrictions.",
+    "keywords": ["pump and dump", "manipulation", "coordination"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_SCOPE_CRYPTO_WARNING",
+    "regime": "Internal_Policy",
+    "short_name": "Cryptoasset risk emphasis",
+    "obligation_type": "INFO",
+    "summary": "For cryptoassets, the system must emphasise volatility, lack of protections, and speculative risks, avoiding promotional language.",
+    "keywords": ["crypto", "volatility", "speculative", "FCA unregulated"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_VULNERABLE_CONTEXT_MENTAL_HEALTH",
+    "regime": "Internal_Policy",
+    "short_name": "Mental health vulnerability flag",
+    "obligation_type": "VULNERABILITY",
+    "summary": "Mentions of distress, anxiety, impaired judgement, or compulsive spending must shift responses toward safeguarding.",
+    "keywords": ["distress", "compulsive spending", "mental health"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_SCOPE_NO_PORTFOLIO_ALLOCATION",
+    "regime": "Internal_Policy",
+    "short_name": "No portfolio allocation recommendations",
+    "obligation_type": "SCOPE",
+    "summary": "The AI must not provide asset allocation percentages or tailored portfolio construction guidance.",
+    "keywords": ["portfolio", "allocation", "percentages"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_ESCALATION_SUSPICIOUS_BEHAVIOUR",
+    "regime": "Internal_Policy",
+    "short_name": "Escalation for suspicious behaviour",
+    "obligation_type": "ESCALATION",
+    "summary": "Patterns indicating coercion, impersonation or external pressure require escalation to human review.",
+    "keywords": ["coercion", "impersonation", "pressure"],
+    "jurisdiction": "UK",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "INTERNAL_DATA_PRIVACY_CAUTION",
+    "regime": "Internal_Policy",
+    "short_name": "Data privacy caution",
+    "obligation_type": "INFO",
+    "summary": "The assistant must discourage users from sharing sensitive identifiers and redirect to secure channels.",
+    "keywords": ["personal data", "ID number", "secure channel"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "FCA_PROD_REVIEW_CYCLE",
+    "regime": "FCA",
+    "short_name": "Product review and monitoring",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Firms must conduct regular product reviews to ensure offerings continue to meet the needs of the target market.",
+    "keywords": ["product review", "monitoring", "target market"],
+    "jurisdiction": "UK",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "EU_AI_ACT_POST_MARKET_MONITORING",
+    "regime": "EU_AI_ACT",
+    "short_name": "Post-market monitoring",
+    "obligation_type": "GOVERNANCE",
+    "summary": "AI providers must collect and analyse post-market performance data to identify emerging risks and update controls.",
+    "keywords": ["post-market", "monitoring", "risk"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
   }
 ]
