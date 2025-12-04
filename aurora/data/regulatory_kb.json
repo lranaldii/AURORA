@@ -310,7 +310,7 @@
     "risk_level": "MEDIUM"
   },
   {
-    "clause_id": "FCA_CONC_4_REPRESENTATION",
+    "clause_id": "FCA_CONC_REPRESENTATION",
     "regime": "FCA",
     "short_name": "Credit Representative Example (APR)",
     "obligation_type": "INFO",
