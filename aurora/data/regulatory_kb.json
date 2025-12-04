@@ -360,6 +360,206 @@
     "risk_level": "HIGH"
   },
   {
+    "clause_id": "MIFIDII_SUITABILITY_ASSESSMENT",
+    "regime": "MiFIDII",
+    "short_name": "Suitability assessment requirements",
+    "obligation_type": "SUITABILITY",
+    "summary": "Investment firms must assess a client's investment objectives, financial situation, risk tolerance, and knowledge to determine whether a proposed product is suitable.",
+    "keywords": ["suitability", "risk tolerance", "investment profile"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "MIFIDII_APPROPRIATENESS_TEST",
+    "regime": "MiFIDII",
+    "short_name": "Appropriateness test for complex products",
+    "obligation_type": "SUITABILITY",
+    "summary": "When executing transactions without advice, firms must assess whether the client has the necessary knowledge and experience for complex financial instruments.",
+    "keywords": ["appropriateness", "complex instruments", "knowledge test"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "MIFIDII_COSTS_CHARGES_TRANSPARENCY",
+    "regime": "MiFIDII",
+    "short_name": "Costs and charges disclosure",
+    "obligation_type": "INFO",
+    "summary": "Firms must provide ex-ante and ex-post disclosure of all costs and charges associated with investment and ancillary services.",
+    "keywords": ["costs", "charges", "ex-ante", "transparency"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "MIFIDII_PRODUCT_GOVERNANCE",
+    "regime": "MiFIDII",
+    "short_name": "Product governance requirements",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Manufacturers must define a target market and ensure that products are distributed only to clients for whom they are compatible.",
+    "keywords": ["product governance", "target market", "distribution"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "MIFIDII_INDUCEMENTS_CONFLICTS",
+    "regime": "MiFIDII",
+    "short_name": "Inducements and conflicts of interest",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Firms must disclose inducements and manage conflicts to ensure advice is not biased by remuneration structures.",
+    "keywords": ["inducements", "conflict of interest", "remuneration"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "SFDR_SUSTAINABILITY_DISCLOSURE",
+    "regime": "SFDR",
+    "short_name": "Sustainability-related disclosures",
+    "obligation_type": "INFO",
+    "summary": "Firms must disclose sustainability risks and their impact on returns, ensuring clarity on environmental and social characteristics.",
+    "keywords": ["SFDR", "sustainability risk", "environmental impact"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "SFDR_PAI_STATEMENT",
+    "regime": "SFDR",
+    "short_name": "Principal adverse impacts (PAI)",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Financial market participants must disclose principal adverse impacts on sustainability factors, including metrics on emissions and social indicators.",
+    "keywords": ["PAI", "adverse impact", "ESG metrics"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "SFDR_GREENWASHING_PREVENTION",
+    "regime": "SFDR",
+    "short_name": "Prevention of greenwashing",
+    "obligation_type": "INFO",
+    "summary": "ESG claims must be accurate, substantiated, and consistent across all documents to avoid misleading investors.",
+    "keywords": ["greenwashing", "ESG", "sustainability claims"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "GDPR_DATA_MINIMISATION",
+    "regime": "GDPR",
+    "short_name": "Data minimisation",
+    "obligation_type": "PRIVACY",
+    "summary": "Controllers must process only the personal data necessary for the intended purpose and avoid collecting excessive details.",
+    "keywords": ["data minimisation", "privacy", "purpose limitation"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "GDPR_SENSITIVE_DATA_RESTRICTION",
+    "regime": "GDPR",
+    "short_name": "Restriction on special category data",
+    "obligation_type": "PRIVACY",
+    "summary": "Special category data such as health, ethnicity, biometric identifiers, or political opinions must not be processed without explicit consent or legal basis.",
+    "keywords": ["special category", "health data", "explicit consent"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "GDPR_AUTOMATED_DECISIONS",
+    "regime": "GDPR",
+    "short_name": "Automated decision-making rights",
+    "obligation_type": "TRANSPARENCY",
+    "summary": "Individuals must be informed when decisions significantly affecting them are made solely through automated processing, and they must have the right to challenge them.",
+    "keywords": ["automated processing", "profiling", "challenge"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "GDPR_DATA_BREACH_NOTIFICATION",
+    "regime": "GDPR",
+    "short_name": "Breach notification duties",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Supervisory authorities must be notified of personal data breaches within 72 hours unless unlikely to pose risk to individuals.",
+    "keywords": ["data breach", "notification", "supervisory authority"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "DORA_ICT_RISK_MANAGEMENT",
+    "regime": "DORA",
+    "short_name": "ICT risk management",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Financial entities must implement an ICT risk management framework ensuring business continuity and resilience.",
+    "keywords": ["ICT risk", "operational risk", "continuity"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "DORA_INCIDENT_REPORTING",
+    "regime": "DORA",
+    "short_name": "Major incident reporting",
+    "obligation_type": "AUDIT",
+    "summary": "Major ICT incidents affecting services must be promptly reported to competent authorities with required technical detail.",
+    "keywords": ["incident reporting", "ICT disruption", "DORA"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "DORA_THIRD_PARTY_OVERSIGHT",
+    "regime": "DORA",
+    "short_name": "Oversight of critical third-party providers",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Financial institutions must monitor critical ICT service providers and ensure contractual arrangements support resilience obligations.",
+    "keywords": ["third-party provider", "ICT outsourcing", "oversight"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "AML_KYC_CUSTOMER_IDENTIFICATION",
+    "regime": "AML",
+    "short_name": "KYC and customer due diligence",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Institutions must verify customer identity, assess risk levels, and apply enhanced due diligence where necessary.",
+    "keywords": ["KYC", "due diligence", "customer verification"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "AML_SUSPICIOUS_ACTIVITY_REPORTING",
+    "regime": "AML",
+    "short_name": "Suspicious activity reporting",
+    "obligation_type": "AUDIT",
+    "summary": "Institutions must report suspicious transactions to the Financial Intelligence Unit without tipping off the customer.",
+    "keywords": ["suspicious transaction", "FIU", "AML reporting"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "AML_SOURCE_OF_FUNDS_CHECK",
+    "regime": "AML",
+    "short_name": "Source of funds and wealth checks",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Large or unusual transactions require verification of the legitimacy of the customer’s source of funds and source of wealth.",
+    "keywords": ["source of wealth", "source of funds", "AML check"],
+    "jurisdiction": "EU",
+    "risk_level": "HIGH"
+  },
+  {
+    "clause_id": "MIFIDII_BEST_EXECUTION",
+    "regime": "MiFIDII",
+    "short_name": "Best execution obligations",
+    "obligation_type": "GOVERNANCE",
+    "summary": "Firms must execute orders on terms most favourable to the client, considering price, cost, speed and execution venue.",
+    "keywords": ["best execution", "order handling", "execution quality"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
+    "clause_id": "GDPR_RETENTION_LIMITS",
+    "regime": "GDPR",
+    "short_name": "Data retention limitation",
+    "obligation_type": "PRIVACY",
+    "summary": "Personal data must not be kept for longer than necessary and firms must apply documented retention schedules.",
+    "keywords": ["retention period", "storage limitation", "erasure"],
+    "jurisdiction": "EU",
+    "risk_level": "MEDIUM"
+  },
+  {
     "clause_id": "INTERNAL_SCOPE_REGULATORY_ADVICE",
     "regime": "Internal_Policy",
     "short_name": "Prohibition of specific regulatory advice",
