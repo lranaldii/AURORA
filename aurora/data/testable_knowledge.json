@@ -1,0 +1,215 @@
+[
+  {
+    "tk_id": "EUAI_AP5_PublicBiometricID",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 5",
+      "raw_text": "The use of real-time remote biometric identification systems in publicly accessible spaces should be prohibited, except in narrowly defined circumstances."
+    },
+    "structured_provision": {
+      "norm_type": "prohibition",
+      "target_behaviour": "real-time biometric identification in public spaces",
+      "protected_interests": [
+        "privacy",
+        "fundamental rights",
+        "freedom of movement"
+      ],
+      "key_terms": [
+        "biometric identification",
+        "real-time",
+        "public spaces",
+        "law enforcement"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Real-time biometric identification in public spaces constitutes a serious intrusion into fundamental rights.",
+      "counter_claim": "Limited deployment for public security or serious crime prevention should be acceptable.",
+      "decision_boundary": "Such systems are prohibited unless deployed under explicit legal authorisation, with strict necessity and proportionality safeguards.",
+      "rationale": "Continuous or generalised biometric surveillance produces disproportionate and systemic harm."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Use post-event biometric identification with judicial authorisation.",
+        "Limit deployment to specific, legally defined cases."
+      ],
+      "non_compliant": [
+        "Continuous real-time facial recognition in public spaces.",
+        "General surveillance without specific legal mandate."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP5_SocialScoring",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 5",
+      "raw_text": "AI systems used for social scoring by public authorities should be prohibited."
+    },
+    "structured_provision": {
+      "norm_type": "prohibition",
+      "target_behaviour": "social scoring of individuals",
+      "protected_interests": [
+        "human dignity",
+        "equality",
+        "non-discrimination"
+      ],
+      "key_terms": [
+        "social scoring",
+        "trustworthiness",
+        "behavioural evaluation"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Social scoring leads to unjustified discrimination and exclusion.",
+      "counter_claim": "Scoring systems could improve efficiency in public services.",
+      "decision_boundary": "Any system assigning scores that affect rights or access to services is prohibited.",
+      "rationale": "Context-blind aggregation violates proportionality and fairness."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Case-by-case human assessment based on explicit legal criteria."
+      ],
+      "non_compliant": [
+        "Automated reputation scores affecting access to services or benefits."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP5_ManipulativeAI",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 5",
+      "raw_text": "AI systems that deploy subliminal techniques or exploit vulnerabilities to materially distort behaviour should be prohibited."
+    },
+    "structured_provision": {
+      "norm_type": "prohibition",
+      "target_behaviour": "manipulation or exploitation of user vulnerabilities",
+      "protected_interests": [
+        "autonomy",
+        "mental integrity"
+      ],
+      "key_terms": [
+        "manipulation",
+        "vulnerability",
+        "subliminal techniques"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Manipulative AI undermines user autonomy.",
+      "counter_claim": "Persuasive technologies are common and acceptable.",
+      "decision_boundary": "Manipulation is prohibited when it exploits vulnerabilities or covertly distorts decision-making.",
+      "rationale": "Consent is invalid when influence is hidden or exploitative."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Transparent recommendation systems with user control."
+      ],
+      "non_compliant": [
+        "Systems exploiting age, disability, or emotional state to influence behaviour."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP6_Recruitment",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Annex III",
+      "raw_text": "AI systems intended to be used for recruitment or employment decisions are considered high-risk."
+    },
+    "structured_provision": {
+      "norm_type": "high-risk obligation",
+      "target_behaviour": "automated recruitment and employment decisions",
+      "protected_interests": [
+        "equality",
+        "labour rights",
+        "non-discrimination"
+      ],
+      "key_terms": [
+        "recruitment",
+        "screening",
+        "employment decisions"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Automated recruitment systems directly affect livelihoods.",
+      "counter_claim": "AI merely assists human recruiters.",
+      "decision_boundary": "Systems shaping hiring outcomes are high-risk even with human oversight.",
+      "rationale": "Decision-shaping influence is sufficient to trigger risk."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Bias audits and explainable decision support."
+      ],
+      "non_compliant": [
+        "Automated rejection or ranking without transparency."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP6_CreditScoring",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Annex III",
+      "raw_text": "AI systems used to evaluate creditworthiness are classified as high-risk."
+    },
+    "structured_provision": {
+      "norm_type": "high-risk obligation",
+      "target_behaviour": "creditworthiness assessment",
+      "protected_interests": [
+        "economic rights",
+        "non-discrimination"
+      ],
+      "key_terms": [
+        "credit scoring",
+        "financial decisions"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Credit scoring decisions have significant impact on individuals.",
+      "counter_claim": "Automated scoring improves efficiency and consistency.",
+      "decision_boundary": "Systems determining access to credit are high-risk regardless of automation level.",
+      "rationale": "Economic exclusion risk requires strict safeguards."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Human review and explanation of credit decisions."
+      ],
+      "non_compliant": [
+        "Fully automated credit denial without recourse."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP52_MaterialInfluence",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Recital 53",
+      "raw_text": "AI systems that do not materially influence decision-making outcomes may not be considered high-risk."
+    },
+    "structured_provision": {
+      "norm_type": "classification threshold",
+      "target_behaviour": "decision support without material influence",
+      "protected_interests": [
+        "fundamental rights"
+      ],
+      "key_terms": [
+        "material influence",
+        "decision-making"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Procedural assistance does not materially influence outcomes.",
+      "counter_claim": "Ranking or prioritisation subtly shapes decisions.",
+      "decision_boundary": "Influence is material when outputs plausibly alter decisions.",
+      "rationale": "De facto influence matters more than formal responsibility."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Pure data formatting or deduplication."
+      ],
+      "non_compliant": [
+        "Scoring or ranking that guides final decisions."
+      ]
+    }
+  }
+]
