@@ -211,5 +211,217 @@
         "Scoring or ranking that guides final decisions."
       ]
     }
+  },
+  {
+    "tk_id": "EUAI_AP5_EmotionRecognition",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 5",
+      "raw_text": "AI systems intended to infer emotions of individuals in the workplace or educational institutions should be prohibited."
+    },
+    "structured_provision": {
+      "norm_type": "prohibition",
+      "target_behaviour": "emotion recognition in workplace or education",
+      "protected_interests": [
+        "human dignity",
+        "mental integrity",
+        "privacy"
+      ],
+      "key_terms": [
+        "emotion recognition",
+        "workplace",
+        "education"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Inferring emotions in sensitive contexts undermines dignity and autonomy.",
+      "counter_claim": "Emotion detection could improve wellbeing or productivity.",
+      "decision_boundary": "Emotion recognition in workplace or education is prohibited regardless of claimed benefits.",
+      "rationale": "Power asymmetries invalidate meaningful consent and amplify harm."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Avoid inferring emotional states in employment or education contexts."
+      ],
+      "non_compliant": [
+        "Monitoring workers’ emotions via facial or voice analysis.",
+        "Assessing students’ engagement or stress automatically."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP52_TransparencyAIContent",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 52",
+      "raw_text": "Users should be informed when they are interacting with an AI system or when content is AI-generated."
+    },
+    "structured_provision": {
+      "norm_type": "transparency obligation",
+      "target_behaviour": "use of AI-generated or AI-mediated content",
+      "protected_interests": [
+        "autonomy",
+        "informed consent"
+      ],
+      "key_terms": [
+        "AI-generated content",
+        "disclosure",
+        "user awareness"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Transparency enables informed user decisions.",
+      "counter_claim": "Disclosure may reduce usability or engagement.",
+      "decision_boundary": "Disclosure is required whenever AI interaction or generation is not obvious to users.",
+      "rationale": "User autonomy outweighs convenience or engagement concerns."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Explicitly label AI-generated text, images, or interactions."
+      ],
+      "non_compliant": [
+        "Presenting AI outputs as human-generated without disclosure."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP14_HumanOversight",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 14",
+      "raw_text": "High-risk AI systems shall be designed to allow for effective human oversight."
+    },
+    "structured_provision": {
+      "norm_type": "obligation",
+      "target_behaviour": "deployment of high-risk AI systems",
+      "protected_interests": [
+        "safety",
+        "fundamental rights"
+      ],
+      "key_terms": [
+        "human oversight",
+        "high-risk AI",
+        "intervention"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Human oversight mitigates risks from automated decisions.",
+      "counter_claim": "Human-in-the-loop is sufficient regardless of actual control.",
+      "decision_boundary": "Oversight must be meaningful, enabling understanding, intervention, and override.",
+      "rationale": "Formal oversight without practical control does not reduce risk."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Provide humans with clear decision explanations and override mechanisms."
+      ],
+      "non_compliant": [
+        "Human oversight that is nominal or purely procedural."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP10_DataGovernance",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 10",
+      "raw_text": "Training, validation and testing data sets shall be relevant, representative, and free of errors."
+    },
+    "structured_provision": {
+      "norm_type": "obligation",
+      "target_behaviour": "data management for high-risk AI systems",
+      "protected_interests": [
+        "fairness",
+        "non-discrimination"
+      ],
+      "key_terms": [
+        "training data",
+        "representativeness",
+        "bias"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Data quality is essential to prevent discriminatory outcomes.",
+      "counter_claim": "Perfect representativeness is infeasible.",
+      "decision_boundary": "Reasonable, documented efforts to ensure representativeness are required.",
+      "rationale": "Risk reduction depends on proactive data governance, not perfection."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Document dataset composition and bias mitigation steps."
+      ],
+      "non_compliant": [
+        "Using unexamined or biased datasets without mitigation."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP12_LoggingTraceability",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 12",
+      "raw_text": "High-risk AI systems shall be designed to enable automatic recording of events."
+    },
+    "structured_provision": {
+      "norm_type": "obligation",
+      "target_behaviour": "operation of high-risk AI systems",
+      "protected_interests": [
+        "accountability",
+        "auditability"
+      ],
+      "key_terms": [
+        "logging",
+        "traceability",
+        "audit"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Logging enables accountability and post-hoc analysis.",
+      "counter_claim": "Extensive logging may be costly or intrusive.",
+      "decision_boundary": "Logging is required to the extent necessary to trace decisions and errors.",
+      "rationale": "Auditability is essential for enforcement and trust."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Maintain logs of system inputs, outputs, and decision paths."
+      ],
+      "non_compliant": [
+        "Deploying high-risk AI without traceable logs."
+      ]
+    }
+  },
+  {
+    "tk_id": "EUAI_AP52_GeneralPurposeAI",
+    "source": {
+      "regulation": "EU AI Act",
+      "article": "Article 52",
+      "raw_text": "Providers of general-purpose AI shall provide information on capabilities and limitations."
+    },
+    "structured_provision": {
+      "norm_type": "transparency obligation",
+      "target_behaviour": "provision of general-purpose AI models",
+      "protected_interests": [
+        "user awareness",
+        "risk management"
+      ],
+      "key_terms": [
+        "general-purpose AI",
+        "capabilities",
+        "limitations"
+      ]
+    },
+    "dialectic_analysis": {
+      "claim": "Transparency about limitations reduces misuse.",
+      "counter_claim": "Detailed disclosure may expose proprietary information.",
+      "decision_boundary": "Providers must disclose capabilities and risks without revealing trade secrets.",
+      "rationale": "Risk mitigation outweighs commercial opacity."
+    },
+    "testable_guidance": {
+      "compliant": [
+        "Provide clear documentation of model capabilities and limits."
+      ],
+      "non_compliant": [
+        "Omitting known risks or limitations in public documentation."
+      ]
+    }
   }
 ]
